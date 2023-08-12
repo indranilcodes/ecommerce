@@ -8,6 +8,9 @@ import { useNavigate, useParams } from "react-router-dom";
 const { Option } = Select;
 
 const UpdateProduct = () => {
+  
+  const baseUrl = process.env.REACT_APP_API ;
+
   const navigate = useNavigate();
   const params = useParams();
   const [categories, setCategories] = useState([]);
@@ -23,7 +26,7 @@ const UpdateProduct = () => {
   //get single product
   const getSingleProduct = async () => {
     try {
-      const { data } = await axios.get(
+      const { data } = await axios.get( baseUrl +
         `/api/v1/product/get-product/${params.slug}`
       );
       setName(data.product.name);
@@ -45,7 +48,8 @@ const UpdateProduct = () => {
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const { data } = await axios.get(baseUrl + "/api/v1/category/get-category");
+      
       if (data?.success) {
         setCategories(data?.category);
       }

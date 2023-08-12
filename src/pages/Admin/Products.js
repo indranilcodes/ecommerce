@@ -5,12 +5,15 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 const Products = () => {
-  const [products, setProducts] = useState([]);
 
+  const baseUrl = process.env.REACT_APP_API ; 
+
+  const [products, setProducts] = useState([]);
+ 
   //getall products
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("/api/v1/product/get-product");
+      const { data } = await axios.get(baseUrl + "/api/v1/product/get-product");
       setProducts(data.products);
     } catch (error) {
       console.log(error);

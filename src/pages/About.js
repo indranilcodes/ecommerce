@@ -3,6 +3,9 @@ import Layout from "./../components/Layout/Layout";
 import { BiBorderRadius } from "react-icons/bi";
 
 const About = () => {
+  
+  
+
   return (
     <Layout title={"About us - Ecommer app"}>
       <div className="row contactus ">

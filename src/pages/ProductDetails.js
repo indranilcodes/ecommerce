@@ -6,6 +6,8 @@ import "../styles/ProductDetailsStyles.css";
 
 
 const ProductDetails = () => {
+   const baseUrl = process.env.REACT_APP_API ;
+
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
@@ -20,7 +22,7 @@ const ProductDetails = () => {
   //getProduct
   const getProduct = async () => {
     try {
-      const { data } = await axios.get(
+      const { data } = await axios.get( baseUrl + 
         `/api/v1/product/get-product/${params.slug}`
       );
       setProduct(data?.product);
@@ -34,7 +36,8 @@ const ProductDetails = () => {
   //get similar product
   const getSimilarProduct = async (pid, cid) => {
     try {
-      const { data } = await axios.get(
+      const { data } = await axios.get( baseUrl +
+        
         `/api/v1/product/related-product/${pid}/${cid}`
       );
       setRelatedProducts(data?.products);
