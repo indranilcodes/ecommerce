@@ -44,7 +44,7 @@ app.use('*' , function(req , res){
      res.sendFile(path.join(__dirname , "./client/build/index.html"));
 })
                 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000 ;
        
 app.listen(PORT , (req , res)=>{
      console.log(`Server is listing on the port ${PORT}`.bgCyan.white);
