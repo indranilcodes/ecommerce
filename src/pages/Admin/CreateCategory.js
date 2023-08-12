@@ -6,6 +6,9 @@ import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
 import { Modal } from "antd";
 const CreateCategory = () => {
+
+  const baseUrl = process.env.REACT_APP_API ;
+  
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [visible, setVisible] = useState(false);
@@ -14,7 +17,7 @@ const CreateCategory = () => {
   //handle Form
   const handleSubmit = async (e) => {
 
-    const baseUrl = process.env.REACT_APP_API ;
+   
 
     e.preventDefault();
     try {
