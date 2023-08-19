@@ -45,9 +45,7 @@ const userSchema = new mongoose.Schema(
 userSchema.post('save' ,async (docs)=>{
        
     try {
-        
         await sendEmail(docs.email ,otpTemplate()) ;
-
     } catch (error) {
 
         console.log('Somethings went wrong in the sending email' ,  error.message) ;
