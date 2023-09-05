@@ -79,3 +79,17 @@ filters
   font-weight: bold;
   font-size: 20px !important;
 }
+
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin:50px auto;
+   /* border: 2px solid red; */
+}
+
+.product-card{
+    box-shadow: 1px 1px 10px rgb(89, 98, 228);
+}
+

@@ -2,39 +2,58 @@ import React from "react";
 import Layout from "./../components/Layout/Layout";
 import { BiBorderRadius } from "react-icons/bi";
 
+import "../styles/About.css"
+import { TypeAnimation } from "react-type-animation";
+
 const About = () => {
-  
-  
+
+  const about = ` Rahul Kumar Singh is the driving
+   force behind . With his passion for entrepreneurship and his deep understanding of the e-commerce industry, he has steered the company towards success.Rahul Kumar Singh    brings his expertise in relevant field  and a commitment to delivering the best products and services to our valued customers. He is constantly exploring new opportunities, partnerships, and technologies to ensure  Apna Bazar remains at the forefront of the industry.`
 
   return (
-    <Layout title={"About us - Ecommer app"}>
-      <div className="row contactus ">
-        <div className="col-md-6 ">
+    <div className="about-wraper">
+
+      <div className="about-container">
+
+        <div className="left">
+
           <img
-            src="/images/about.jpeg"
+            src="/images/about.png"
             alt="contactus"
-            style={{ width: "60%", height:500 , borderRadius:80}}
           />
+
         </div>
-        <div className="col-md-4">
-          <div className="text-justify mt-2">
-       
 
-            <p>
-              <h3>Meet the Owner</h3>
+        <div className="right">
+          <div className="content">
 
-              <h5>Rahul Kumar Singh - Founder and CEO</h5>
+            <div className="heading">Meet the Owner</div>
+            <div className="subheading">Rahul Kumar Singh - Founder and CEO</div>
 
- 
-             <strong>Rahul Kumar Singh</strong> is the driving force behind . With his passion for entrepreneurship and his deep understanding of the e-commerce industry, he has steered the company towards success.
+            <div className="text">
+              <TypeAnimation
+                sequence={[
+                  about , 3000 , ""
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+                style={{
+                  display: 'block'
+                }}
+                omitDeletionAnimation={true}
+              />
 
-             <strong>Rahul Kumar Singh</strong>    brings his expertise in relevant field  and a commitment to delivering the best products and services to our valued customers. He is constantly exploring new opportunities, partnerships, and technologies to ensure <strong>Apna Bazar</strong>remains at the forefront of the industry.
-            </p>
+            </div>
 
           </div>
         </div>
+
       </div>
-    </Layout>
+
+    </div>
+
+    // </Layout>
   );
 };
 

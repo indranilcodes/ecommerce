@@ -9,15 +9,21 @@ import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/Homepage.css";
 
+import { RotatingLines } from 'react-loader-spinner'
+
+
+
 const HomePage = () => {
- 
-  const baseUrl = process.env.REACT_APP_API ;
+
+  const [loader, setloader] = useState(false);
+
+  const baseUrl = process.env.REACT_APP_API;
 
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  
+
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
@@ -26,12 +32,15 @@ const HomePage = () => {
 
 
   // get all cat
-  const getAllCategory = async ()=>{
+  const getAllCategory = async () => {
     try {
-      const { data } = await axios.get( baseUrl + "/api/v1/category/get-category");
+      setloader(true);
+      const { data } = await axios.get(baseUrl + "/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
       }
+
+      setloader(false);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +55,7 @@ const HomePage = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get( baseUrl + `/api/v1/product/product-list/${page}`);
+      const { data } = await axios.get(baseUrl + `/api/v1/product/product-list/${page}`);
 
       setLoading(false);
       setProducts(data.products);
@@ -59,7 +68,7 @@ const HomePage = () => {
   //getTOtal COunt
   const getTotal = async () => {
     try {
-      const { data } = await axios.get( baseUrl + "/api/v1/product/product-count");
+      const { data } = await axios.get(baseUrl + "/api/v1/product/product-count");
 
       setTotal(data?.total);
     } catch (error) {
@@ -96,7 +105,7 @@ const HomePage = () => {
     }
     setChecked(all);
   };
-  
+
   useEffect(() => {
     if (!checked.length || !radio.length) getAllProducts();
   }, [checked.length, radio.length]);
@@ -108,7 +117,7 @@ const HomePage = () => {
   //get filterd product
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post( baseUrl + "/api/v1/product/product-filters", {
+      const { data } = await axios.post(baseUrl + "/api/v1/product/product-filters", {
         checked,
         radio,
       });
@@ -120,7 +129,7 @@ const HomePage = () => {
   return (
     <Layout title={"ALl Products - Best offers "}>
       {/* banner image */}
-      
+
       <img
         src="/images/banner.png"
         className="banner-img"
@@ -165,51 +174,69 @@ const HomePage = () => {
 
         <div className="col-md-9 ">
           <h1 className="text-center">All Products</h1>
+
+
           <div className="d-flex flex-wrap">
-            {products?.map((p) => (
-              <div className="card m-2" key={p._id}>
-                <img
-                  src={baseUrl +  `/api/v1/product/product-photo/${p._id}`}
-                  className="card-img-top"
-                  alt={p.name}
-                />
-                <div className="card-body">
-                  <div className="card-name-price">
-                    <h5 className="card-title">{p.name}</h5>
-                    <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                      })}
-                    </h5>
+
+            {
+              loader ?
+                <div className="loader">
+
+                  <RotatingLines
+                    strokeColor="green"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    width="96"
+                    visible={true}
+                  />
+
+                </div> : products?.map((p) => (
+                  <div className="card m-2 product-card" key={p._id}>
+                    <img
+                      src={baseUrl + `/api/v1/product/product-photo/${p._id}`}
+                      className="card-img-top"
+                      alt={p.name}
+                    />
+                    <div className="card-body">
+                      <div className="card-name-price">
+                        <h5 className="card-title">{p.name}</h5>
+                        <h5 className="card-title card-price">
+                          {p.price.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                          })}
+                        </h5>
+                      </div>
+                      <p className="card-text ">
+                        {p.description.substring(0, 60)}...
+                      </p>
+                      <div className="card-name-price">
+                        <button
+                          className="btn btn-info ms-1"
+                          onClick={() => navigate(`/product/${p.slug}`)}
+                        >
+                          More Details
+                        </button>
+                        <button
+                          className="btn btn-dark ms-1"
+                          onClick={() => {
+                            setCart([...cart, p]);
+                            localStorage.setItem(
+                              "cart",
+                              JSON.stringify([...cart, p])
+                            );
+                            toast.success("Item Added to cart");
+                          }}
+                        >
+                          ADD TO CART
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <p className="card-text ">
-                    {p.description.substring(0, 60)}...
-                  </p>
-                  <div className="card-name-price">
-                    <button
-                      className="btn btn-info ms-1"
-                      onClick={() => navigate(`/product/${p.slug}`)}
-                    >
-                      More Details
-                    </button>
-                    <button
-                      className="btn btn-dark ms-1"
-                      onClick={() => {
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
-                        toast.success("Item Added to cart");
-                      }}
-                    >
-                      ADD TO CART
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
+                ))
+
+            }
+
           </div>
 
           <div className="m-2 p-3">
