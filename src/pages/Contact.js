@@ -28,17 +28,17 @@ const Contact = () => {
           <p className="mt-3">
              <BiMailSend /> 
              
-              <a style={{ textDecoration: 'none' }} href="mailto:rahulsingh8556kumar@gmail.com">rahulsingh8556kumar@gmail.com</a>
+              <a style={{ textDecoration: 'none' }} href="mailto:indranilrsvm03@gmail.com">indranilrsvm03@gmail.com</a>
             
           </p>
           <p className="mt-3">
             <p className="mt-3">
               <BiPhoneCall />
-              <a style={{ textDecoration: 'none' }} href="tel:9335344202"> +919335344202</a>
+              <a style={{ textDecoration: 'none' }} href="tel:9430316352"> +919430316352</a>
             </p>
           </p>
           <p className="mt-3">
-            <BiSupport /> <a style={{ textDecoration: 'none' }} href="tel:8115456218"> +918115456218</a>
+            <BiSupport /> <a style={{ textDecoration: 'none' }} href="tel:9430316352"> +919430316352</a>
           </p>
         </div>
       </div>

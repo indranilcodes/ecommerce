@@ -7,7 +7,7 @@ import { TypeAnimation } from "react-type-animation";
 
 const About = () => {
 
-  const about = ` Rahul Kumar Singh is the driving
+  const about = `Indranil Chatterjee is the driving
    force behind . With his passion for entrepreneurship and his deep understanding of the e-commerce industry, he has steered the company towards success.Rahul Kumar Singh    brings his expertise in relevant field  and a commitment to delivering the best products and services to our valued customers. He is constantly exploring new opportunities, partnerships, and technologies to ensure  Apna Bazar remains at the forefront of the industry.`
 
   return (
@@ -28,7 +28,7 @@ const About = () => {
           <div className="content">
 
             <div className="heading">Meet the Owner</div>
-            <div className="subheading">Rahul Kumar Singh - Founder and CEO</div>
+            <div className="subheading">Indranil Chatterjee - Founder and CEO</div>
 
             <div className="text">
               <TypeAnimation
